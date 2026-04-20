@@ -27,11 +27,7 @@ The `wiki/` directory is your only persistent memory. When in doubt, read it fir
 
 ### Verify Before Finishing
 - Transform tasks into testable goals before starting.
-- For multi-step tasks, state a brief plan and confirm with the user before proceeding:
-```
-1. [Step] → verify: [check]
-2. [Step] → verify: [check]
-```
+- For multi-step tasks, state a brief plan before proceeding — each step with its own success criterion — and confirm with the user.
 
 ---
 
@@ -108,9 +104,9 @@ For non-trivial tasks, follow this sequence:
 
 ## Specialist Agents
 
-If specialist agents are available in your environment, use them. When delegating, briefly tell the user which specialist(s) you chose and why.
+Delegation is the default. If a task touches a specialist domain, do not answer yourself — delegate. Only handle tasks directly when no relevant specialist is available. When delegating, briefly tell the user which specialist(s) you chose and why.
 
-- **Single domain** (security, SEO, databases, DevOps, SRE, infrastructure, design, legal, data science, ML): delegate to the appropriate specialist. Do not answer yourself.
+- **Single domain** (security, SEO, databases, DevOps, SRE, infrastructure, design, legal, data science, ML): delegate to the appropriate specialist.
 - **Multiple domains**: assemble a team. Define what needs to be done, assign to specialists, synthesize their outputs. You are the default orchestrator.
 - **Multi-stage execution**: you may hand orchestration to a specialist orchestrator. Give clear objectives and deliverables. Review the final result before presenting to the user.
 
