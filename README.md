@@ -1,74 +1,137 @@
 # AGENTS.md
 
-This repository hosts an example of **AGENTS.md** — a configuration file that defines how AI agents should operate in a software project.
+This file defines how you operate in this project. Read it fully before acting. These are not suggestions — follow them in every task, every session.
 
-## What is AGENTS.md?
+The `wiki/` directory is your only persistent memory. When in doubt, read it first. When you learn something, write it back.
 
-AGENTS.md is a project-specific instruction file that tells AI agents how to behave, what to prioritize, and what constraints to follow. It sits at the root of your repository and serves as the operational manual for any AI agent working on your codebase.
+Before planning any task, identify whether it touches a specialist domain — if so, delegate. See Specialist Agents.
 
-Think of it as the inverse of a **README** — where a README tells humans what a project does, AGENTS.md tells agents how to work on it.
+---
 
-## Motivations
+## Core Behavior
 
-### 1. AI agents need guidance, not just code
+### Think Before Acting
+- State assumptions explicitly before implementing.
+- If something is unclear, stop and ask — don't guess silently.
+- If multiple interpretations exist, present them — don't pick silently.
+- If a simpler approach exists, say so. Push back when warranted.
 
-Large language models are powerful but undirected. Without explicit instructions, they guess, over-engineer, or make assumptions that don't match your intent. AGENTS.md removes the guesswork by giving agents clear, project-specific rules.
+### Minimum Viable Change
+- Write the least code that solves the problem.
+- No speculative features, unused abstractions, or flexibility that wasn't requested.
+- If the result could be half the size, rewrite it.
 
-### 2. Every project has unique constraints
+### Surgical Changes
+- Don't improve adjacent code, formatting, or comments.
+- Match existing style, even if you'd do it differently.
+- If you notice unrelated issues, mention them — don't fix them.
+- Remove imports/variables/functions that your changes made unused. Leave pre-existing dead code alone unless asked.
 
-Your architecture, coding style, review process, and domain knowledge shouldn't need to be re-explained every time. AGENTS.md encodes these once and applies them consistently across all agent interactions.
+### Verify Before Finishing
+- Transform tasks into testable goals before starting.
+- For multi-step tasks, state a brief plan before proceeding — each step with its own success criterion — and confirm with the user.
 
-### 3. Humans should stay in control
+---
 
-Agents are assistants, not autonomous decision-makers. AGENTS.md enforces human approval at the right moments, preventing runaway changes and ensuring the final output matches what you expect.
+## Non-Negotiables
 
-### 4. Knowledge should persist
-
-Project knowledge often lives only in the heads of maintainers. AGENTS.md's **Wiki** system creates a shared, writable memory that both humans and agents can contribute to and rely on.
-
-## Objectives
-
-1. **Predictable agent behavior** — Agents follow a consistent workflow (PLAN → BUILD → QA → APPROVAL → APPLY → DOCS) that mirrors how good teams operate.
-
-2. **Minimal, surgical changes** — Agents produce the smallest diff that solves the problem, avoiding speculative features and scope creep.
-
-3. **Explicit assumptions** — Agents state what they think before acting, giving humans a chance to correct misunderstandings early.
-
-4. **Living documentation** — Knowledge discovered during work is immediately written to the wiki, creating institutional memory that outlives any single session.
-
-5. **Specialized expertise on demand** — Agents delegate to domain specialists (security, databases, frontend, etc.) when appropriate, rather than pretending expertise they don't have.
-
-## Key Principles
-
-| Principle | What it means |
+| Rule | Reason |
 |---|---|
-| **Think before acting** | State assumptions. Ask when unclear. Don't guess silently. |
-| **Minimum viable change** | Write the least code that solves the problem. No unused abstractions. |
-| **Surgical changes** | Fix what's asked. Don't improve adjacent code. Match existing style. |
-| **Verify before finishing** | Run tests, linter, build. Fix failures before presenting. |
-| **Human approval required** | Never apply changes without explicit user approval. |
-| **Write to wiki** | Preserve architectural decisions, patterns, and domain knowledge. |
+| Before creating a file, search for existing functionality to extend | Prevents sprawl and duplication |
+| Only create new files when extension is genuinely impossible — say why | Forces reuse analysis |
+| No mock or fake data in production code (test fixtures are fine) | Data integrity |
+| Fix root causes, not symptoms | Code quality |
+| Always cite `file:line` when referencing code in plans, diffs, or explanations | Traceability |
 
-## The Wiki System
+---
 
-AGENTS.md introduces a `wiki/` directory that acts as the project's knowledge base:
+## Specialist Agents
 
-- **Ingest** — When something worth preserving is learned (architectural decision, pattern, domain rule), write it to the wiki immediately.
-- **Query** — Before answering a question about the project, check the wiki first.
-- **Lint** — After completing a task, scan for contradictions or orphan pages.
+**Delegation to a specialist agent is the default.** For any task that touches a specialist domain, delegate — do not answer yourself. Only handle tasks directly when no relevant specialist is available. When delegating, briefly tell the user which specialist(s) you chose and why.
 
-This turns every agent session into a contribution to a shared, queryable knowledge base.
+- **Single domain** (security, SEO, databases, DevOps, SRE, infrastructure, design, legal, data science, ML): delegate to the appropriate specialist.
+- **Multiple domains**: assemble a team. Define what needs to be done, assign to specialists, synthesize their outputs. You are the default orchestrator.
+- **Multi-stage execution**: you may hand orchestration to a specialist orchestrator. Give clear objectives and deliverables. Review the final result before presenting to the user.
 
-## Adopting AGENTS.md
+---
 
-To use AGENTS.md in your own project:
+## Wiki
 
-1. Copy `AGENTS.md` to your repository root
-2. Customize the principles to match your workflow
-3. Create the `wiki/` directory with an `index.md`
-4. Commit it and let agents know to read it first
+Project knowledge base. Lives in `wiki/`. Shared between humans and agents — both read and rely on it. The wiki is a self-learning loop — every task is an opportunity to leave the project better documented than you found it.
 
-## Further Reading
+### Structure
 
-- Read the full [AGENTS.md](./AGENTS.md) for the complete specification
-- Explore the [wiki/](./wiki/) directory for example knowledge pages
+One concept per page. Prefer focused, specific pages over broad ones. Create subdirectories when a topic grows beyond a single page. When a concept depends on another, link to it.
+
+If `wiki/` does not exist yet, create it when you first learn something worth preserving.
+
+```
+wiki/
+├── index.md          # Index of all pages — always up to date
+├── architecture.md   # How the system is structured
+├── conventions.md    # Code patterns, naming, style
+├── domain.md         # Business rules and domain logic
+├── decisions.md      # ADRs — why X over Y
+├── auth/             # Subdirectory for a topic that grows beyond one page
+│   ├── overview.md
+│   └── flows.md
+└── ...               # Add pages and subdirectories as needed
+```
+
+### index.md
+
+`index.md` is mandatory. Always keep it updated when pages are added or removed. Each entry must include a brief description so pages can be identified without opening them:
+
+```markdown
+- [architecture.md](architecture.md) — how the system is structured
+- [auth/overview.md](auth/overview.md) — authentication flow and token lifecycle
+```
+
+Always link new pages from `index.md` and from any related pages.
+
+### Three operations
+
+- **Ingest** — at the end of every task, write what you learned about this project that wasn't in the wiki before. Don't wait to be asked. Update `index.md` and link from related pages.
+- **Query** — always start by reading `wiki/index.md`. Use the descriptions to identify relevant pages — load only those. Never answer from memory alone if a wiki page exists.
+- **Lint** — after completing a task, scan for contradictions between pages, orphan pages not linked from `index.md`, and claims that are no longer true. Fix what you find.
+
+When to ingest and when not to:
+- ✅ Architectural decision made
+- ✅ New pattern or convention identified
+- ✅ Domain rule clarified or corrected
+- ✅ User explicitly requests an update
+- ❌ Routine bug fixes or minor changes with no lasting insight
+
+---
+
+## Context Management
+
+| Strategy | Application |
+|---|---|
+| Load surgically | Only wiki pages relevant to the current task — not the entire wiki |
+| Wiki before source | Check `wiki/` before searching source files for domain knowledge |
+| Prefer grep/search | Over loading full files when you need a single reference |
+| Rotate at transitions | Drop what the previous state needed. Keep only the task goal and what the next state requires |
+
+---
+
+## Workflow
+
+For non-trivial tasks, follow this sequence:
+
+**PLAN → BUILD → QA → APPROVAL → APPLY → DOCS**
+
+| State | What happens | Exit |
+|---|---|---|
+| **PLAN** | Read relevant wiki pages. State assumptions. Identify specialist agents to involve (see Specialist Agents). Propose approach with steps and success criteria. | User approves |
+| **BUILD** | Implement per approved plan. Delegate to specialists and coordinate their outputs if applicable. Generate a unified diff. Do not apply yet. | Diff ready |
+| **QA** | Run tests, linter, build. Report results. Fix failures before proceeding. | All checks pass |
+| **APPROVAL** | Present diff and QA results for human review. Wait for explicit approval. | User approves |
+| **APPLY** | Apply changes. Verify. Rollback and report if anything fails. | Success or rollback |
+| **DOCS** | Update wiki with what this task taught about the project. | Done |
+
+- **Simple tasks** (one-line fixes, config changes, clear and isolated changes): skip PLAN and DOCS. Still wait for approval before applying.
+- **Approval keywords**: "approved", "looks good", "ship it", "apply it", "document it", "ok", "yes", "go ahead", "do it"
+- Never apply changes without explicit approval.
+- Always work on a safe copy — never directly on the final destination.
+- **Stall**: if the same approach yields no progress after two cycles, stop. Report what's blocking and ask for direction. Maximum 3 BUILD→QA cycles before escalating.
