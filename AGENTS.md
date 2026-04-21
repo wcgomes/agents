@@ -35,7 +35,11 @@ The `wiki/` directory is your only persistent memory. When in doubt, read it fir
 
 Project knowledge base. Lives in `wiki/`. Shared between humans and agents — both read and rely on it.
 
-If `wiki/` does not exist yet, create it when you first learn something worth preserving. One concept per page. `index.md` is mandatory — always keep it updated when pages are added or removed, and always link new pages from there and from related pages.
+### Structure
+
+One concept per page. Prefer focused, specific pages over broad ones. Create subdirectories when a topic grows beyond a single page. When a concept depends on another, link to it.
+
+If `wiki/` does not exist yet, create it when you first learn something worth preserving.
 
 ```
 wiki/
@@ -50,12 +54,21 @@ wiki/
 └── ...               # Add pages and subdirectories as needed
 ```
 
-Prefer focused, specific pages over broad ones. Create subdirectories when a topic grows beyond a single page. When a concept depends on another, link to it — pages should reference each other where relevant.
+### index.md
 
-**Three operations**:
+`index.md` is mandatory. Always keep it updated when pages are added or removed. Each entry must include a brief description so pages can be identified without opening them:
 
-- **Ingest** — when something worth preserving is learned, write it into the appropriate wiki page immediately. Don't defer. Link the new content from `index.md` and from any related pages.
-- **Query** — before answering any question about the project, check the relevant wiki page first. Never answer from memory alone if a wiki page exists.
+```markdown
+- [architecture.md](architecture.md) — how the system is structured
+- [auth/overview.md](auth/overview.md) — authentication flow and token lifecycle
+```
+
+Always link new pages from `index.md` and from any related pages.
+
+### Three operations
+
+- **Ingest** — when something worth preserving is learned, write it into the appropriate wiki page immediately. Don't defer. Update `index.md` and link from related pages.
+- **Query** — always start by reading `wiki/index.md`. Use the descriptions to identify relevant pages — load only those. Never answer from memory alone if a wiki page exists.
 - **Lint** — after completing a task, scan for contradictions between pages, orphan pages not linked from `index.md`, and claims that are no longer true. Fix what you find.
 
 When to ingest and when not to:
@@ -87,7 +100,7 @@ For non-trivial tasks, follow this sequence:
 
 | State | What happens | Exit |
 |---|---|---|
-| **PLAN** | Read relevant wiki pages. State assumptions. Identify specialist agents to involve if needed (see Specialist Agents). Propose approach with steps and success criteria. | User approves |
+| **PLAN** | Read relevant wiki pages. State assumptions. Identify specialist agents to involve (see Specialist Agents). Propose approach with steps and success criteria. | User approves |
 | **BUILD** | Implement per approved plan. Delegate to specialists and coordinate their outputs if applicable. Generate a unified diff. Do not apply yet. | Diff ready |
 | **QA** | Run tests, linter, build. Report results. Fix failures before proceeding. | All checks pass |
 | **APPROVAL** | Present diff and QA results for human review. Wait for explicit approval. | User approves |
@@ -104,9 +117,9 @@ For non-trivial tasks, follow this sequence:
 
 ## Specialist Agents
 
-Delegation is the default. If a task touches a specialist domain, do not answer yourself — delegate. Only handle tasks directly when no relevant specialist is available. Pick the best agent on your own; do not ask the user to choose. When delegating, briefly tell the user which specialist(s) you chose and why.
+**Delegation to a specialist agent is the default.** For any task that touches a specialist domain, delegate — do not answer yourself. Only handle tasks directly when no relevant specialist is available. When delegating, briefly tell the user which specialist(s) you chose and why.
 
-- **Single domain** (security, SEO, databases, DevOps, SRE, infrastructure, sales, design, legal, data science, ML): delegate to the appropriate specialist.
+- **Single domain** (security, SEO, databases, DevOps, SRE, infrastructure, design, legal, data science, ML): delegate to the appropriate specialist.
 - **Multiple domains**: assemble a team. Define what needs to be done, assign to specialists, synthesize their outputs. You are the default orchestrator.
 - **Multi-stage execution**: you may hand orchestration to a specialist orchestrator. Give clear objectives and deliverables. Review the final result before presenting to the user.
 
