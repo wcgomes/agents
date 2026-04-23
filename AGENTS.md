@@ -4,7 +4,7 @@ This file defines how you operate in this project. Read it fully before acting. 
 
 The `wiki/` directory is your only persistent memory. When in doubt, read it first. When you learn something, write it back.
 
-Before planning any task, identify whether it touches a specialist domain — if so, delegate. See Specialist Agents.
+Before starting any task, check your available agents. If a specialist exists for this work, delegate — see Specialist Agents.
 
 ---
 
@@ -15,6 +15,23 @@ Before planning any task, identify whether it touches a specialist domain — if
 - If something is unclear, stop and ask — don't guess silently.
 - If multiple interpretations exist, present them — don't pick silently.
 - If a simpler approach exists, say so. Push back when warranted.
+
+### Minimum Words
+Every word must carry information — cut the rest. Applies to all responses and wiki pages.
+- **Drop**: articles (a/an/the), filler (just/really/basically/actually), pleasantries (sure/happy to/certainly), hedging (it might be worth/you could consider).
+- **Prefer short synonyms**: "fix" not "implement a solution for", "use" not "utilize", "big" not "extensive". Fragments OK.
+- **Pattern**: `[thing] [action] [reason]. [next step].`
+- **Preserve exactly**: code blocks, inline code, commands, file paths, URLs, technical terms, version numbers.
+- **Exception**: write in full for security warnings, irreversible actions, multi-step sequences where fragments risk misread.
+
+### Plan, Execute, Verify
+Every task has a verifiable goal. Work toward it — don't stop until it's met.
+- Before starting, define success criteria. If unclear, ask.
+- For multi-step tasks, share the plan upfront and confirm before proceeding.
+- Before presenting results: run tests, linter, and build. Fix failures first.
+- Show a diff and wait for explicit approval before applying.
+- Never apply directly to the final destination.
+- Two cycles with no progress — stop, explain what's blocking, ask for direction.
 
 ### Minimum Viable Change
 - Write the least code that solves the problem.
@@ -27,9 +44,11 @@ Before planning any task, identify whether it touches a specialist domain — if
 - If you notice unrelated issues, mention them — don't fix them.
 - Remove imports/variables/functions that your changes made unused. Leave pre-existing dead code alone unless asked.
 
-### Verify Before Finishing
-- Transform tasks into testable goals before starting.
-- For multi-step tasks, state a brief plan before proceeding — each step with its own success criterion — and confirm with the user.
+### Context Management
+- Load only wiki pages relevant to the current task — not the entire wiki.
+- Check `wiki/` before searching source files for domain knowledge.
+- Prefer grep/search over loading full files when you need a single reference.
+- Release context from finished steps. Keep only what the current work requires.
 
 ---
 
@@ -101,37 +120,3 @@ When to ingest and when not to:
 - ✅ Domain rule clarified or corrected
 - ✅ User explicitly requests an update
 - ❌ Routine bug fixes or minor changes with no lasting insight
-
----
-
-## Context Management
-
-| Strategy | Application |
-|---|---|
-| Load surgically | Only wiki pages relevant to the current task — not the entire wiki |
-| Wiki before source | Check `wiki/` before searching source files for domain knowledge |
-| Prefer grep/search | Over loading full files when you need a single reference |
-| Rotate at transitions | Drop what the previous state needed. Keep only the task goal and what the next state requires |
-
----
-
-## Workflow
-
-For non-trivial tasks, follow this sequence:
-
-**PLAN → BUILD → QA → APPROVAL → APPLY → DOCS**
-
-| State | What happens | Exit |
-|---|---|---|
-| **PLAN** | Read relevant wiki pages. State assumptions. Identify specialist agents to involve (see Specialist Agents). Propose approach with steps and success criteria. | User approves |
-| **BUILD** | Implement per approved plan. Delegate to specialists and coordinate their outputs if applicable. Generate a unified diff. Do not apply yet. | Diff ready |
-| **QA** | Run tests, linter, build. Report results. Fix failures before proceeding. | All checks pass |
-| **APPROVAL** | Present diff and QA results for human review. Wait for explicit approval. | User approves |
-| **APPLY** | Apply changes. Verify. Rollback and report if anything fails. | Success or rollback |
-| **DOCS** | Update wiki with what this task taught about the project. | Done |
-
-- **Simple tasks** (one-line fixes, config changes, clear and isolated changes): skip PLAN and DOCS. Still wait for approval before applying.
-- **Approval keywords**: "approved", "looks good", "ship it", "apply it", "document it", "ok", "yes", "go ahead", "do it"
-- Never apply changes without explicit approval.
-- Always work on a safe copy — never directly on the final destination.
-- **Stall**: if the same approach yields no progress after two cycles, stop. Report what's blocking and ask for direction. Maximum 3 BUILD→QA cycles before escalating.
