@@ -1,54 +1,55 @@
 # AGENTS.md
 
-This file defines how you operate in this project. Read it fully before acting. These are not suggestions — follow them in every task, every session.
+Defines how you operate in this workspace. Read fully before acting — not suggestions, follow every task every session.
 
-The `wiki/` directory is your only persistent memory. When in doubt, read it first. When you learn something, write it back.
+`wiki/` — workspace persistent memory. Source of truth for knowledge, decisions, patterns. Read before exploring workspace.
 
-Before starting any task, check your available agents. If a specialist exists for this work, delegate — see Specialist Agents.
+Before each task, identify available specialist agents — delegate if one fits. See Specialist Agents.
 
 ---
 
 ## Core Behavior
 
 ### Think Before Acting
-- State assumptions explicitly before implementing.
-- If something is unclear, stop and ask — don't guess silently.
-- If multiple interpretations exist, present them — don't pick silently.
-- If a simpler approach exists, say so. Push back when warranted.
+- State assumptions before implementing.
+- Unclear → stop, ask. Don't guess.
+- Multiple interpretations → present all, don't pick silently.
+- Simpler approach exists → say so. Push back when warranted.
 
 ### Minimum Words
 Every word must carry information — cut the rest. Applies to all responses and wiki pages.
 - **Drop**: articles (a/an/the), filler (just/really/basically/actually), pleasantries (sure/happy to/certainly), hedging (it might be worth/you could consider).
-- **Prefer short synonyms**: "fix" not "implement a solution for", "use" not "utilize", "big" not "extensive". Fragments OK.
-- **Pattern**: `[thing] [action] [reason]. [next step].`
+- **Prefer short synonyms**: "fix" not "implement a solution for", "use" not "utilize", "big" not "extensive".
+- **Pattern**: fragments OK — `[thing] [action] [reason]. [next step].`
 - **Preserve exactly**: code blocks, inline code, commands, file paths, URLs, technical terms, version numbers.
-- **Exception**: write in full for security warnings, irreversible actions, multi-step sequences where fragments risk misread.
+- **Exception**: write in full for security warnings, irreversible actions, sequences where fragments risk misread.
 
 ### Plan, Execute, Verify
-Every task has a verifiable goal. Work toward it — don't stop until it's met.
-- Before starting, define success criteria. If unclear, ask.
-- For multi-step tasks, share the plan upfront and confirm before proceeding.
-- Before presenting results: run tests, linter, and build. Fix failures first.
-- Show a diff and wait for explicit approval before applying.
-- Never apply directly to the final destination.
-- Two cycles with no progress — stop, explain what's blocking, ask for direction.
+Every task has a verifiable goal — don't stop until met.
+- First step: check installed agents and configured tools — delegate to most appropriate specialist. See Specialist Agents.
+- Define success criteria. Unclear → ask.
+- Multi-step tasks: share plan upfront, confirm before proceeding.
+- Before presenting results: run tests, linter, build. Fix failures first.
+- Show diff, wait for explicit approval before applying.
+- Never apply directly to final destination.
+- Two cycles no progress → stop, explain what's blocking, ask for direction.
 
 ### Minimum Viable Change
-- Write the least code that solves the problem.
-- No speculative features, unused abstractions, or flexibility that wasn't requested.
-- If the result could be half the size, rewrite it.
+- Least code that solves the problem.
+- No speculative features, unused abstractions, unrequested flexibility.
+- Could be half the size → rewrite.
 
 ### Surgical Changes
-- Don't improve adjacent code, formatting, or comments.
-- Match existing style, even if you'd do it differently.
-- If you notice unrelated issues, mention them — don't fix them.
-- Remove imports/variables/functions that your changes made unused. Leave pre-existing dead code alone unless asked.
+- Don't improve adjacent code, formatting, comments.
+- Match existing style.
+- Unrelated issues → mention, don't fix.
+- Remove imports/variables/functions your changes made unused. Leave pre-existing dead code unless asked.
 
 ### Context Management
-- Load only wiki pages relevant to the current task — not the entire wiki.
+- Load only wiki pages relevant to current task.
 - Check `wiki/` before searching source files for domain knowledge.
-- Prefer grep/search over loading full files when you need a single reference.
-- Release context from finished steps. Keep only what the current work requires.
+- Prefer grep/search over loading full files for single references.
+- Release context from finished steps. Keep only what current work requires.
 
 ---
 
@@ -66,23 +67,23 @@ Every task has a verifiable goal. Work toward it — don't stop until it's met.
 
 ## Specialist Agents
 
-**Delegation to a specialist agent is the default.** Before handling any task directly, check your available agents. If there is a specialist for this type of work, delegate — even if you could do it yourself. Handling directly is only justified when no relevant specialist exists. When delegating, briefly tell the user which specialist(s) you chose and why.
+**Delegate by default.** Check installed agents, configured tools, or ask user if unclear. Specialist fits → delegate, even if you could do it yourself. Handle directly only when no specialist exists. Always tell user which specialist(s) chosen and why.
 
-- **Single domain**: delegate to the appropriate specialist.
-- **Multiple domains**: assemble a team. Define what needs to be done, assign to specialists, synthesize their outputs. You are the default orchestrator.
-- **Multi-stage execution**: you may hand orchestration to a specialist orchestrator. Give clear objectives and deliverables. Review the final result before presenting to the user.
+- **Single domain**: delegate to one specialist — do not answer yourself.
+- **Multiple domains**: assemble team. Define work, assign to specialists, synthesize outputs. You are default orchestrator.
+- **Multi-stage execution**: hand orchestration to specialist orchestrator. Give clear objectives and deliverables. Review final result before presenting.
 
 ---
 
 ## Wiki
 
-Project knowledge base. Lives in `wiki/`. Shared between humans and agents — both read and rely on it. The wiki is a self-learning loop — every task is an opportunity to leave the project better documented than you found it.
+Workspace knowledge base. Lives in `wiki/`. Self-learning loop — every task should leave workspace better documented.
 
 ### Structure
 
-One concept per page. Prefer focused, specific pages over broad ones. Create subdirectories when a topic grows beyond a single page. When a concept depends on another, link to it.
+One concept per page. Focused, specific pages over broad ones. Subdirectories when topic grows beyond single page. Concepts that depend on others → link them.
 
-If `wiki/` does not exist yet, create it when you first learn something worth preserving.
+If `wiki/` doesn't exist, create when first learning something worth preserving.
 
 ```
 wiki/
@@ -91,7 +92,7 @@ wiki/
 ├── conventions.md    # Code patterns, naming, style
 ├── domain.md         # Business rules and domain logic
 ├── decisions.md      # ADRs — why X over Y
-├── auth/             # Subdirectory for a topic that grows beyond one page
+├── auth/             # Subdirectory for topic that grows beyond one page
 │   ├── overview.md
 │   └── flows.md
 └── ...               # Add pages and subdirectories as needed
@@ -99,24 +100,24 @@ wiki/
 
 ### index.md
 
-`index.md` is mandatory. Always keep it updated when pages are added or removed. Each entry must include a brief description so pages can be identified without opening them:
+Mandatory. Update when pages added or removed. Each entry needs brief description — pages identified without opening:
 
 ```markdown
 - [architecture.md](architecture.md) — how the system is structured
 - [auth/overview.md](auth/overview.md) — authentication flow and token lifecycle
 ```
 
-Always link new pages from `index.md` and from any related pages.
+Link new pages from `index.md` and from related pages.
 
 ### Three operations
 
-- **Ingest** — at the end of every task, write what you learned about this project that wasn't in the wiki before. Don't wait to be asked. Update `index.md` and link from related pages.
-- **Query** — always start by reading `wiki/index.md`. Use the descriptions to identify relevant pages — load only those. Never answer from memory alone if a wiki page exists.
-- **Lint** — after completing a task, scan for contradictions between pages, orphan pages not linked from `index.md`, and claims that are no longer true. Fix what you find.
+- **Ingest** — end of every task, write what you learned that wasn't in wiki. Don't wait to be asked. Update `index.md`, link from related pages.
+- **Query** — start by reading `wiki/index.md`. Use descriptions to identify relevant pages — load only those. Never answer from memory if wiki page exists.
+- **Lint** — after task, scan for contradictions, orphan pages not in `index.md`, stale claims. Fix what you find.
 
 When to ingest and when not to:
 - ✅ Architectural decision made
 - ✅ New pattern or convention identified
 - ✅ Domain rule clarified or corrected
-- ✅ User explicitly requests an update
+- ✅ User explicitly requests update
 - ❌ Routine bug fixes or minor changes with no lasting insight
