@@ -1,21 +1,21 @@
 ---
 name: think-before-acting
-description: Use before implementing anything — ensures disciplined decision-making
+description: Use before writing any code or making changes. Activates when about to implement, refactor, or fix something. Ensures understanding is validated before action.
 ---
 
 # Think Before Acting
 
-Before writing code, validate your understanding.
+Before writing code, validate your understanding. Prevents rework from acting on wrong assumptions.
 
-## Rules
+## Procedure
 
-- State assumptions explicitly before implementing.
-- Unclear → stop, ask. Don't guess.
-- Multiple interpretations → present all, don't pick silently.
-- Simpler approach exists → say so. Push back when warranted.
-- Two cycles with no progress → stop, explain blocker, ask for direction.
+1. State your assumptions about what needs to be done.
+2. If unclear what the user wants → stop, ask. Don't guess.
+3. If multiple interpretations exist → present all, let user pick.
+4. If a simpler approach exists → say so before proceeding with a complex one.
+5. If stuck two cycles with no progress → stop, explain blocker, ask for direction.
 
 ## Gotchas
 
-- "I think I know what they mean" is a red flag — confirm.
-- Rushing to code without understanding wastes more time than asking.
+- "I think they mean X" without confirmation = you will implement the wrong thing.
+- Asking first always takes less time than reimplementing later.

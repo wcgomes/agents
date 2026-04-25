@@ -1,9 +1,9 @@
 ---
-name: wiki
-description: Manages workspace knowledge in wiki/. Use when querying anything about the workspace or at the end of any task to ingest what was learned. Self-learning loop — every task leaves the workspace better documented.
+name: wiki-ops
+description: Manages workspace knowledge in wiki/. Activates when querying workspace architecture, conventions, or decisions — and at the end of every task to ingest learnings. Self-learning loop: every task leaves the workspace better documented.
 ---
 
-# Wiki
+# Wiki Ops
 
 Workspace knowledge base. Lives in `wiki/`. Self-learning loop — every task leaves the workspace better documented than it found it.
 
@@ -20,9 +20,6 @@ wiki/
 ├── conventions.md    # Code patterns, naming, style
 ├── domain.md         # Business rules and domain logic
 ├── decisions.md      # ADRs — why X over Y
-├── auth/             # Subdirectory for topic that grows beyond one page
-│   ├── overview.md
-│   └── flows.md
 └── ...               # Add pages and subdirectories as needed
 ```
 
@@ -55,7 +52,7 @@ Link new pages from `index.md` and from related pages.
 
 ## Gotchas
 
-- Always read `wiki/index.md` first — never load all pages at once.
-- If index doesn't exist yet, create it before creating any other wiki page.
-- Wiki pages follow `minimum-words` skill — dense, direct, no fluff.
-- Ingest is not optional — do it before closing any task.
+- Always read `wiki/index.md` first — loading all pages at once wastes context.
+- If `index.md` doesn't exist yet, create it before creating any other wiki page.
+- Wiki pages that aren't linked from `index.md` are effectively invisible — always update the index.
+- Ingest is not optional — skipping it breaks the self-learning loop.

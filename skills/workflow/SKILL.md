@@ -1,6 +1,6 @@
 ---
 name: workflow
-description: Use when starting any non-trivial task — plan, delegate, execute, verify
+description: Use when starting any non-trivial task. Activates when planning, implementing, or verifying work that has multiple steps. Defines success criteria, coordinates subagents, runs QA, and manages approval.
 ---
 
 # Workflow
@@ -9,7 +9,7 @@ Every task has a verifiable goal — don't stop until met.
 
 ## Plan
 
-1. Load `wiki` skill — read relevant pages before touching any code.
+1. Load `wiki-ops` skill — read relevant pages before touching any code.
 2. Load `think-before-acting` skill — validate understanding.
 3. Define what "done" looks like. Unclear → ask.
 4. Multi-step tasks: share plan, get agreement before starting.
@@ -18,7 +18,7 @@ Every task has a verifiable goal — don't stop until met.
 ## Execute
 
 1. For multi-task plans: load `parallel-agents` skill — dispatch independent tasks to subagents in parallel.
-2. For sequential tasks: delegate each to specialist subagent with fresh context.
+2. For sequential tasks: invoke specialist subagent per task with fresh context.
 3. Each subagent gets focused, self-contained prompt. Never inherits your session.
 
 ## Verify
@@ -35,7 +35,7 @@ Every task has a verifiable goal — don't stop until met.
 
 ## After Task
 
-1. Load `wiki` skill — ingest what this task taught about the workspace.
+1. Load `wiki-ops` skill — ingest what this task taught about the workspace.
 2. Lint wiki for contradictions or stale claims.
 
 ## If Stuck
@@ -48,6 +48,6 @@ One-line fixes, config changes, isolated changes → skip planning. Still run QA
 
 ## Gotchas
 
-- "Looks good" counts as approval. Don't ask again.
-- QA failing is not optional — fix before presenting.
-- Wiki ingest at the end is not optional.
+- "Looks good" counts as approval — don't ask again after receiving it.
+- Presenting results with failing QA is worse than not presenting at all — fix first.
+- Wiki ingest at the end is not optional — it's how the workspace learns.

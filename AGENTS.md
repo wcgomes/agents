@@ -15,7 +15,7 @@ Skills load on demand — full instructions activate only when relevant. All are
 | Skill | Activates |
 |---|---|
 | `invoke-subagents` | Before every task |
-| `wiki` | Query or ingest workspace knowledge |
+| `wiki-ops` | Query or ingest workspace knowledge |
 | `workflow` | Non-trivial tasks |
 | `think-before-acting` | Before implementing |
 | `minimum-words` | All responses and wiki pages |
