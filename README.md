@@ -33,25 +33,9 @@ Skills are **on-demand** — the agent loads only what the current context requi
 
 ## Using this template
 
-**Step 1 — Copy `AGENTS.md` into your workspace**
+**Step 1 — Install skills and agents globally**
 
-```bash
-cp AGENTS.md /path/to/your-project/
-```
-
-`AGENTS.md` is the boot contract. It is **not** installed globally and **not** copied by the skills installer. The agent reads it on every session start.
-
-**Step 2 — Let the agent create `wiki/`**
-
-The `wiki/` directory is workspace-specific knowledge. The agent creates it on first ingest. Do not copy from this repo — it is intentionally empty here.
-
-**Step 3 — Skills evolve locally (automatic)**
-
-As the agent works, the `skill-candidates` skill detects recurring procedural patterns. After 3 encounters in distinct tasks, it proposes a new skill to you. If approved, the skill is created in `.agents/skills/` within your workspace — local to that project, not installed globally.
-
-**Step 4 (optional) — Install base skills globally**
-
-If your agent supports loadable skills (Claude Code, OpenCode, etc.), install them once:
+The behavioral rules and specialized agents must be installed once on your machine so the agent can load them on demand.
 
 **Via curl:**
 ```bash
@@ -65,7 +49,21 @@ cd agents-workspace
 ./tools/install-skills.sh
 ```
 
-This deploys the 8 skills to your agent's skill directory. `AGENTS.md` still must be copied per workspace.
+**Step 2 — Copy `AGENTS.md` into your workspace**
+
+```bash
+cp AGENTS.md /path/to/your-project/
+```
+
+`AGENTS.md` is the boot contract. It is **not** installed globally and **not** copied by the skills installer. The agent reads it on every session start.
+
+**Step 3 — Let the agent create `wiki/`**
+
+The `wiki/` directory is workspace-specific knowledge. The agent creates it on first ingest. Do not copy from this repo — it is intentionally empty here.
+
+**Step 4 — Skills evolve locally (automatic)**
+
+As the agent works, the `skill-candidates` skill detects recurring procedural patterns. After 3 encounters in distinct tasks, it proposes a new skill to you. If approved, the skill is created in `.agents/skills/` within your workspace — local to that project, not installed globally.
 
 ### Installer options
 
