@@ -69,6 +69,7 @@ When you detect a recurring procedural pattern during ingest, load the `skill-ca
 ## Gotchas
 
 - Always read `wiki/index.md` first — loading all pages at once wastes context.
+- After `index.md` points you to a page, use `grep` to find the section, then `read` with `offset`/`limit` to load only the slice you need. Never pull a large `.md` whole.
 - If `index.md` doesn't exist yet, create it before creating any other wiki page.
 - Wiki pages that aren't linked from `index.md` are effectively invisible — always update the index.
 - Ingest is not optional — skipping it breaks the self-learning loop.
