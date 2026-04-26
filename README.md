@@ -117,7 +117,7 @@ As the agent works, it detects recurring procedural patterns. After 3 encounters
 | `--opencode` | OpenCode only |
 | `--claude` | Claude Code only |
 | `--copilot` | Copilot only |
-| `--no-agency` | Skip agency-agents |
+| `--no-agency` | Skip agency-agents (use if you don't want the agents or already have your own) |
 | `--list` | Show available skills |
 | `--help` | Show help |
 
@@ -164,4 +164,4 @@ The agent handles the rest.
 
 **Thank you to the [agency-agents community](https://github.com/msitarzewski/agency-agents)** for building and maintaining an incredible collection of 144+ specialized agents across 15 divisions. Their work makes multi-domain AI delegation practical and accessible.
 
-Workflow skills, orchestration logic, and installer from agents-workspace. Use `--no-agency` to skip agency-agents.
+Workflow skills, orchestration logic, and installer from agents-workspace.
