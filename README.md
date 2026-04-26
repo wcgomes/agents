@@ -71,6 +71,8 @@ Skills load **on-demand** — the agent only activates what the current context 
 - **Academic** — Research Assistant, Citation Manager
 - **Specialized** — Legal, Healthcare, Compliance, Recruitment, Translation, and more
 
+> Already have your own agents? Use `--no-agency` to skip the 144+ agents and install only the 8 base skills.
+
 ## Setup in 4 steps
 
 **Step 1 — Install skills and agents globally**
@@ -117,7 +119,7 @@ As the agent works, it detects recurring procedural patterns. After 3 encounters
 | `--opencode` | OpenCode only |
 | `--claude` | Claude Code only |
 | `--copilot` | Copilot only |
-| `--no-agency` | Skip agency-agents (use if you don't want the agents or already have your own) |
+| `--no-agency` | Skip agency-agents |
 | `--list` | Show available skills |
 | `--help` | Show help |
 
@@ -163,5 +165,3 @@ The agent handles the rest.
 ## Credits
 
 **Thank you to the [agency-agents community](https://github.com/msitarzewski/agency-agents)** for building and maintaining an incredible collection of 144+ specialized agents across 15 divisions. Their work makes multi-domain AI delegation practical and accessible.
-
-Workflow skills, orchestration logic, and installer from agents-workspace.
