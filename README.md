@@ -61,6 +61,8 @@ cp AGENTS.md /path/to/your-project/
 
 The `wiki/` directory is workspace-specific knowledge. The agent creates it on first ingest. Do not copy from this repo — it is intentionally empty here.
 
+> **Tip:** If working in an existing workspace, ask the agent to "set up the wiki" before starting tasks. This triggers the initial `index.md` creation and primes the self-learning loop.
+
 **Step 4 — Skills evolve locally (automatic)**
 
 As the agent works, the `skill-candidates` skill detects recurring procedural patterns. After 3 encounters in distinct tasks, it proposes a new skill to you. If approved, the skill is created in `.agents/skills/` within your workspace — local to that project, not installed globally.
