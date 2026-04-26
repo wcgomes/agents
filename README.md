@@ -59,7 +59,7 @@ cp AGENTS.md /path/to/your-project/
 
 **Step 3 — Let the agent create `wiki/`**
 
-The `wiki/` directory is workspace-specific knowledge. The agent creates it on first ingest. Do not copy from this repo — it is intentionally empty here.
+The `wiki/` directory is workspace-specific knowledge. The agent creates it on first ingest.
 
 > **Tip:** If working in an existing workspace, ask the agent to "set up the wiki" before starting tasks. This triggers the initial `index.md` creation and primes the self-learning loop.
 
