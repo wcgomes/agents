@@ -2,25 +2,33 @@
 
 **Behavioral contract for AI coding agents.** Install once, works with Claude Code, OpenCode, Cursor, Copilot, and more.
 
-> Integrates [agency-agents](https://github.com/msitarzewski/agency-agents) — a collection of 144+ specialized agents trusted by **86k+ developers**. Our installer adds 9 workflow orchestration skills on top.
+> Integrates [agency-agents](https://github.com/msitarzewski/agency-agents) — 144+ specialized agents trusted by **86k+ developers**. Our installer adds 9 workflow orchestration skills on top.
 
-## The problem
+## Who is this for
 
-You ask your AI agent to fix authentication. It:
-- Refactors 3 unrelated files
-- Adds a dependency you didn't ask for
-- Doesn't update the docs
-- Next session, repeats the same mistakes
+- **Anyone** who wants an optimized, consistent, self-learning workflow with AI agents — for coding, design, marketing, research, writing, data analysis, or any other task
+- **Teams** needing consistent agent behavior across multiple projects
 
-**Agents without guidance are expensive interns.** They work hard, learn nothing, and leave messes.
+## Why use it
 
-## What this solves
+| Without | With |
+|---|---|
+| Agent implements directly, accumulates context | Delegates to specialists with focused context |
+| Changes broader than needed | Minimal, targeted changes |
+| Skips verification, presents broken work | Two-stage review: spec compliance → code quality |
+| Verbose responses waste context window | Dense, filler-free communication |
+| Forgets what it learned between sessions | Self-learning wiki persists knowledge |
+| Same mistakes repeated across tasks | Skill candidates detect and codify patterns |
+| No workflow enforcement | HARD-GATEs + anti-rationalization |
 
-**Before:** No behavioral contract → wandering agents → broader changes than needed → repeated mistakes.
+## How it works
 
-**After:** Focused context → specialist delegation → minimal changes → self-learning wiki → evolving skills.
-
-## How it works: 6 mechanisms
+- **Subagent-driven workflow** — agent always delegates to specialists, never implements directly. Orchestrates, reviews, validates.
+- **Automatic wiki ingest** — agent evaluates after every task what it learned. No need to ask. Self-learning loop.
+- **Automatic skill candidate tracking** — agent detects recurring procedural patterns. Tracks from first encounter, proposes at 3+.
+- **HARD-GATEs between phases** — Plan → Execute → Verify → After Task. No skipping. No combining.
+- **Anti-rationalization tables** — every skill anticipates excuses agents use to skip steps and refutes them.
+- **Parallel specialist teams** — independent tasks dispatched to parallel agents automatically.
 
 | Mechanism | Skill | What it does |
 |---|---|---|
@@ -33,26 +41,9 @@ You ask your AI agent to fix authentication. It:
 
 Skills load **on-demand** — the agent only activates what the current context requires.
 
-## Who is this for
+## 🎭 The Agency: AI Specialists Ready to Transform Your Workflow
 
-- **Solo developers** tired of cleaning up after AI agents
-- **Teams** needing consistent agent behavior across multiple projects
-- **Anyone using Claude Code, OpenCode, Cursor, Copilot, or similar tools**
-- **Projects where context window is finite** and every token counts
-
-## What you get
-
-**9 workflow skills** for orchestration, quality, and memory:
-
-- `invoke-subagents` — specialist delegation
-- `workflow` — task planning and QA
-- `parallel-work` — concurrent independent tasks
-- `wiki` — workspace knowledge and self-learning
-- `think-before-acting` — validate before coding
-- `minimal-changes` — least code that solves the problem
-- `brevity` — dense, filler-free communication
-- `skill-candidates` — pattern detection and skill evolution
-- `agents-skills` — create, refine, and validate Agent Skills
+A complete AI agency at your fingertips - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.
 
 **144+ specialized agents** from [agency-agents](https://github.com/msitarzewski/agency-agents) across 15 divisions:
 
@@ -72,7 +63,7 @@ Skills load **on-demand** — the agent only activates what the current context 
 - **Academic** — Research Assistant, Citation Manager
 - **Specialized** — Legal, Healthcare, Compliance, Recruitment, Translation, and more
 
-> Already have your own agents? Use `--no-agency` to skip the 144+ agents and install only the 9 base skills.
+> Installed by default. Use `--no-agency` to skip and install only the 9 base skills.
 
 ## Setup in 4 steps
 
@@ -91,8 +82,6 @@ git clone https://github.com/wcgomes/agents-workspace.git
 cd agents-workspace
 ./tools/install.sh
 ```
-
-> Agency-agents (144+ specialized agents) is installed by default. Use `--no-agency` to skip and install only the 9 base skills.
 
 **Step 2 — Copy `AGENTS.md` into your workspace**
 
@@ -155,14 +144,6 @@ wiki/                  # Workspace knowledge — created on first ingest
 .agents/skills/        # Skills created from candidates — workspace-local
   <your-custom-skill>/
 ```
-
-## Start using it
-
-1. [Install skills and agents](#setup-in-4-steps)
-2. Copy `AGENTS.md` to your project
-3. Tell your agent: "Set up the wiki and start working"
-
-The agent handles the rest.
 
 ## Credits
 
