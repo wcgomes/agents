@@ -21,7 +21,8 @@ Skills load on demand — full instructions activate only when relevant. All are
 ## Boot Sequence
 
 1. Load `workflow` skill — orchestrates the full task lifecycle.
-2. Load skills as context demands.
+2. Load `invoke-subagents` skill — you orchestrate, specialists execute. Never implement directly.
+3. Load skills as context demands.
 
 ## <HARD-GATE> After Every Task
 
