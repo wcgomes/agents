@@ -65,6 +65,10 @@ A complete AI agency at your fingertips - From frontend wizards to Reddit commun
 
 > Installed by default. Use `--no-agency` to skip and install only the 9 base skills.
 
+### Credits
+
+**Thank you to the [agency-agents community](https://github.com/msitarzewski/agency-agents)** for building and maintaining an incredible collection of 144+ specialized agents across 15 divisions. Their work makes multi-domain AI delegation practical and accessible.
+
 ## Setup in 4 steps
 
 **Step 1 — Install skills and agents globally**
@@ -144,7 +148,3 @@ wiki/                  # Workspace knowledge — created on first ingest
 .agents/skills/        # Skills created from candidates — workspace-local
   <your-custom-skill>/
 ```
-
-## Credits
-
-**Thank you to the [agency-agents community](https://github.com/msitarzewski/agency-agents)** for building and maintaining an incredible collection of 144+ specialized agents across 15 divisions. Their work makes multi-domain AI delegation practical and accessible.
