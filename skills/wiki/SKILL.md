@@ -1,9 +1,9 @@
 ---
-name: learn
+name: wiki
 description: Use this skill when querying workspace knowledge before tasks or ingesting learnings after completing work. Self-learning loop for the workspace.
 ---
 
-# Learn
+# Wiki
 
 Workspace knowledge base and self-improvement loop. Query wiki before exploring blindly. Ingest learnings after every task.
 
@@ -23,9 +23,9 @@ Workspace knowledge base and self-improvement loop. Query wiki before exploring 
 
 Run this checklist at the end of EVERY task. Do NOT skip.
 
-1. Architectural decision made? → `wiki/decisions.md`
-2. New code pattern or convention? → `wiki/conventions.md`
-3. Domain rule clarified or corrected? → `wiki/domain.md`
+1. Architectural decision made? → `wiki/decisions/<decision-name>.md`
+2. New code pattern or convention? → `wiki/conventions/<pattern-name>.md`
+3. Domain rule clarified or corrected? → `wiki/domain/<rule-name>.md`
 4. System structure insight? → `wiki/architecture.md`
 5. User corrected a misunderstanding? → ingest where relevant
 6. Non-obvious multi-step procedure? → evaluate for skill candidate
@@ -41,11 +41,15 @@ Do NOT ask "should I update the wiki?" — evaluate automatically.
 ```
 wiki/
 ├── index.md              # Always up to date — update when pages added/removed
-├── architecture.md       # System structure
-├── conventions.md        # Code patterns, naming, style
-├── domain.md             # Business rules
-├── decisions.md          # ADRs — why X over Y
+├── architecture.md       # System structure overview (single file)
+├── conventions/          # One file per convention
+│   └── <pattern-name>.md
+├── domain/               # One file per business rule
+│   └── <rule-name>.md
+├── decisions/            # One file per ADR
+│   └── <decision-name>.md
 ├── skill-candidates/     # Recurring patterns tracked for skill promotion
+│   └── <pattern-name>.md
 └── ...
 ```
 

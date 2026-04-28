@@ -1,8 +1,8 @@
 # Agents Workspace
 
-**Behavioral contract for AI coding agents.** Install once, works with Claude Code, OpenCode, Cursor, Copilot, and more.
+**AI agent workflow toolkit.** Subagent-driven delegation, workspace memory, minimal changes. Works with Claude Code, OpenCode, Copilot, and more.
 
-> Integrates [agency-agents](https://github.com/msitarzewski/agency-agents) — 144+ specialized agents trusted by **86k+ developers**. Our installer adds 9 workflow orchestration skills on top.
+> Integrates [agency-agents](https://github.com/msitarzewski/agency-agents) — 144+ specialized agents trusted by **86k+ developers**. Our installer adds 5 foundational skills on top.
 
 ## Who is this for
 
@@ -32,12 +32,11 @@
 
 | Mechanism | Skill | What it does |
 |---|---|---|
-| **Isolated context** | `invoke-subagents` | Delegates every task to a specialist with focused context. No session bloat. |
-| **Orchestrated workflow** | `workflow` + `parallel-work` | Plans tasks, coordinates execution, runs QA. No task ends without validation. |
-| **Dense communication** | `brevity` | Strips filler from responses and edits. Preserves context window for reasoning. |
-| **Self-learning wiki** | `wiki` | Reads workspace knowledge before coding, ingests learnings after. Memory persists. |
-| **Behavioral guardrails** | `think-before-acting` + `minimal-changes` | Validates understanding before acting. Changes only what's needed. |
-| **Evolving skills** | `skill-candidates` | Detects recurring patterns. After 3 encounters, proposes a new skill. Workspace grows its own rules. |
+| **Delegation** | `delegate` | Dispatches focused work to subagents for every task. Context isolation built-in. |
+| **Self-learning wiki** | `wiki` | Reads workspace knowledge before coding, ingests learnings after. Tracks skill candidates. |
+| **Minimal changes** | `implement` | Validates understanding before acting. Writes the least code that solves the problem. |
+| **Systematic debugging** | `debug` | Investigates errors with observe-hypothesize-verify-fix-confirm cycle. |
+| **Skill authoring** | `agents-skills` | Creates, refines, and validates Agent Skills following the agentskills.io spec. |
 
 Skills load **on-demand** — the agent only activates what the current context requires.
 
@@ -63,7 +62,7 @@ A complete AI agency at your fingertips - From frontend wizards to Reddit commun
 - **Academic** — Research Assistant, Citation Manager
 - **Specialized** — Legal, Healthcare, Compliance, Recruitment, Translation, and more
 
-> Installed by default. Use `--no-agency` to skip and install only the 9 base skills.
+> Installed by default. Use `--no-agency` to skip and install only the 5 base skills.
 
 ### Credits
 
@@ -131,15 +130,11 @@ As the agent works, it detects recurring procedural patterns. After 3 encounters
 ```
 AGENTS.md              # Boot instructions — copy to each workspace
 skills/                # Loadable behavioral rules — install globally
-  invoke-subagents/
-  wiki/
-  workflow/
-  think-before-acting/
-  brevity/
-  minimal-changes/
-  parallel-work/
-  skill-candidates/
-  agents-skills/
+  delegate/            # Agent selection and dispatch
+  learn/               # Wiki query and self-learning loop
+  implement/           # Validation and minimal changes
+  debug/               # Systematic error investigation
+  agents-skills/       # Skill authoring and validation
 
 # In your workspace (created by the agent)
 wiki/                  # Workspace knowledge — created on first ingest
