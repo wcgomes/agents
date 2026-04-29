@@ -17,6 +17,7 @@ Default behavior:
 - `specialist-first` is mandatory
 - generalist is fallback, not peer
 - `delegate` loads before substantive work
+- specialist-first evaluation is mandatory for every task before proceeding
 - discovery and selection happen before execution
 - capability alone is never sufficient when a better specialist exists
 - delegation distributes work, not accountability
@@ -75,6 +76,10 @@ Tie-break rules:
 ## Delegation Requirement
 
 Delegation is mandatory when an eligible specialist exists.
+
+Specialist-first evaluation is mandatory for every task before proceeding.
+Skipping `delegate` activation or specialist evaluation before planning, research, execution, decomposition, delegation, or fallback decisions breaks this workflow.
+Do not start direct execution until specialist eligibility has been assessed under this policy.
 
 Required behavior:
 - if a specialist is eligible, delegate
@@ -172,6 +177,8 @@ Provide enough explicit context to avoid avoidable clarification loops.
 7. Select the best specialist or specialists.
 
 Hard-gate before execution:
+- [ ] `delegate` activated before substantive work
+- [ ] specialist-first evaluation completed
 - [ ] done criteria defined or clarified
 - [ ] `wiki/index.md` consulted before broad workspace exploration when available
 - [ ] discovery completed

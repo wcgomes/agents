@@ -8,6 +8,8 @@ description: Mandatory specialist-first workflow. Load first, before substantive
 Use this skill to discover specialists, select the best fit, delegate with a structured handoff, and review delegated results.
 
 This skill is protocol-first. Do not frame it around role identity.
+This skill is mandatory for every task before proceeding.
+If specialist eligibility has not been assessed, stop and run this workflow first.
 
 ---
 
@@ -25,6 +27,13 @@ Everything else belongs to the delegated agent unless task constraints require o
 Activate this skill by default first, before substantive planning, research, execution, decomposition, delegation, or fallback decisions.
 
 After activation, load the `wiki` skill and read `wiki/index.md` when available before broad workspace exploration.
+
+Before proceeding, confirm:
+- specialist eligibility has been assessed
+- direct execution has not started
+- fallback has not been considered without discovery
+
+If any item is false, stop and run this workflow first.
 
 Use it:
 - before deciding whether to work directly or delegate
