@@ -6,6 +6,7 @@ Enforce a `specialist-first, subagent-driven workflow`.
 
 Default behavior:
 - discover specialists before execution
+- decompose broad tasks into specialist-owned scopes before delegation
 - select the best semantic match
 - delegate when an eligible specialist exists
 - use a generalist only as explicit fallback
