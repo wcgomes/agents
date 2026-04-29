@@ -2,7 +2,7 @@
 
 ## System Goal
 
-Enforce a `subagent-driven workflow`.
+Enforce a `specialist-first, subagent-driven workflow`.
 
 Default behavior:
 - discover specialists before execution
@@ -16,11 +16,12 @@ Default behavior:
 
 - `specialist-first` is mandatory
 - generalist is fallback, not peer
+- `delegate` loads before substantive work
 - discovery and selection happen before execution
 - capability alone is never sufficient when a better specialist exists
 - delegation distributes work, not accountability
 - fallback must be brief, explicit, and defensible
-- subdelegation is allowed when it improves specialization or parallelism
+- subdelegation is governed, not default
 
 ---
 
@@ -36,6 +37,8 @@ Discovery policy:
 - produce an eligible candidate set before execution
 - if discovery is incomplete, use the best supported path and state that limitation before fallback
 
+Broad exploration means workspace-wide search, repeated file reads, or open-ended local investigation beyond minimal scoping.
+
 Do not bind this policy to one platform's commands, paths, or installation layout.
 
 ---
@@ -46,8 +49,12 @@ Choose specialists by semantic fit, not convenience.
 
 Selection policy:
 - match by description, specialization, scope, and constraints
+- prefer decomposing broad tasks into specialist-owned scopes before delegation
+- do not hand a mixed multi-domain task to one agent when it can be cleanly split
+- if subtasks require materially different specialist expertise and can be assigned without overlapping ownership, splitting is required
+- early decomposition in this phase is structural for selection and handoff, not substantive execution or broad local research
+- minimal local context gathering is allowed when needed to scope selection and handoff
 - prefer the most semantically specific eligible specialist
-- allow multiple specialists when the task decomposes into independent scopes
 - use stable documented tie-break rules when candidates are similarly suitable
 - do not use a generalist if an eligible specialist exists
 - do not bypass a specialist because the current agent could also do the work
@@ -61,7 +68,7 @@ Eligibility minimum:
 Tie-break rules:
 - first: higher semantic specificity
 - second: stable documented precedence in the current environment
-- third: split across specialists if scopes are naturally distinct
+- third: split across specialists when domains or scopes are naturally distinct
 
 ---
 
@@ -71,7 +78,7 @@ Delegation is mandatory when an eligible specialist exists.
 
 Required behavior:
 - if a specialist is eligible, delegate
-- if multiple specialists fit independent scopes, parallel delegation is allowed
+- prefer using multiple specialists when domains or scopes are naturally distinct
 - do not skip delegation because the current agent is "good enough"
 - do not execute specialist work before discovery and selection are complete
 - do not treat broad competence as an exception
@@ -86,12 +93,13 @@ Fallback is allowed only when:
 - no eligible specialist exists
 - all discovered candidates are unsuitable for stated constraints
 - delegation is explicitly constrained by the user
-- delegation failed and fallback is allowed by the current task constraints
+- delegation failed after a valid handoff, re-evaluation, and no viable specialist path remains under the current task constraints
 
 Fallback requirements:
 - explain briefly why delegation did not apply
 - keep the explanation factual and specific
 - identify the failed discovery, selection, or constraint condition
+- under discovery limits, state why no known eligible specialist fits better under the current constraints
 - do not treat "I can do it" as sufficient justification
 - do not silently fall back
 
@@ -107,6 +115,8 @@ Subdelegation is allowed by policy.
 
 Subdelegation rules:
 - use it when specialization, parallelism, or decomposition improves the task
+- decompose at the current level when multiple independent scopes are already visible
+- apply the same discovery, selection, and fallback rules to each subdelegated scope
 - the delegating agent remains responsible for review, synthesis, and quality
 - do not use recursive ping-pong delegation
 - avoid uncontrolled fan-out
@@ -153,15 +163,17 @@ Provide enough explicit context to avoid avoidable clarification loops.
 
 ### Phase 1: Assess
 
-1. Load `wiki`.
-2. Read `wiki/index.md` before broad exploration when it exists.
-3. Clarify done criteria when unclear.
-4. Load `delegate` before deciding discovery, selection, or delegation.
-5. Discover eligible specialists.
-6. Select the best specialist or specialists.
+1. Load `delegate` before substantive planning, research, discovery, selection, delegation, or fallback decisions.
+2. Load `wiki`.
+3. Read `wiki/index.md` before broad exploration when it exists.
+4. Use workspace context from `wiki` to inform selection, handoff, or later execution when relevant.
+5. Clarify done criteria when unclear.
+6. Discover eligible specialists.
+7. Select the best specialist or specialists.
 
 Hard-gate before execution:
 - [ ] done criteria defined or clarified
+- [ ] `wiki/index.md` consulted before broad workspace exploration when available
 - [ ] discovery completed
 - [ ] eligible candidates assessed
 - [ ] delegation decision made under this policy
@@ -177,8 +189,9 @@ Hard-gate before execution:
 ### Phase 3: After Task
 
 1. Load `wiki`.
-2. Evaluate whether new knowledge should be ingested.
-3. Review output for brevity and compliance with these rules.
+2. Evaluate whether knowledge should be added, updated, or removed.
+3. Lint `wiki` for stale references, missing index links, and contradictions when it changed.
+4. Review output for brevity and compliance with these rules.
 
 ---
 
@@ -207,7 +220,7 @@ Every word must carry information. Cut the rest.
 
 ### Skill Activation
 
-When a skill description fits, invoke it before anything else. No exceptions.
+When a skill description fits, invoke it before substantive work. Follow any explicit skill order defined in this file.
 
 | Skill | Activates |
 |---|---|

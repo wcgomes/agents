@@ -9,9 +9,9 @@ Workspace knowledge base and self-improvement loop. Query wiki before exploring 
 
 ---
 
-## Two Operations
+## Three Operations
 
-**Setup** — create `wiki/` immediately if it doesn't exist.
+**Setup** — create `wiki/` when setup is explicit, when ingest or maintenance work requires it, or when new knowledge must be persisted.
 
 **Query** — read `wiki/index.md` first. Identify relevant pages. Load only those.
 
@@ -33,6 +33,7 @@ Run this checklist at the end of EVERY task. Do NOT skip.
 Any YES → ingest. All NO → skip (but you must have evaluated each).
 
 Do NOT ask "should I update the wiki?" — evaluate automatically.
+If the wiki changed, also evaluate whether pages should be updated, removed, re-linked from `wiki/index.md`, or linted for contradictions and stale references.
 
 ---
 
@@ -53,7 +54,10 @@ wiki/
 └── ...
 ```
 
-Create `wiki/` immediately if it doesn't exist (see Wiki Structure below).
+Create `wiki/` when setup is explicit, when ingest or maintenance work requires it, or when new knowledge must be persisted (see Wiki Structure below).
+If `wiki/index.md` exists, read it before broad workspace exploration. Treat it as the first workspace knowledge source.
+
+Broad exploration means workspace-wide search, repeated file reads, or open-ended local investigation beyond minimal scoping.
 
 ---
 
@@ -109,6 +113,34 @@ When `encounters >= 3` and `status: candidate`, set `status: propose` and ask us
 
 ---
 
+## Wiki Maintenance
+
+When the wiki changes, maintain it deliberately.
+
+### Add
+
+Create a new page when the knowledge is new, stable enough to reuse, and not already covered by an existing page.
+
+### Update
+
+Update an existing page when the knowledge already belongs there, a rule was clarified, or a page became incomplete or misleading.
+
+### Remove
+
+Remove a page or section when it is obsolete, contradicted, duplicated elsewhere, or no longer useful. When removing content, also update or remove references from `wiki/index.md` and related pages.
+
+### Lint
+
+When the wiki changes, check for:
+- stale references
+- missing `wiki/index.md` links for important pages
+- contradictory guidance across pages
+- orphaned pages that are no longer discoverable from `wiki/index.md`
+
+Do not leave the wiki internally inconsistent after editing it.
+
+---
+
 ## Rationalization Prevention
 
 | Excuse | Reality |
@@ -122,6 +154,6 @@ When `encounters >= 3` and `status: candidate`, set `status: propose` and ask us
 
 ## Gotchas
 
-- Always read `wiki/index.md` first — loading all pages wastes context.
+- If `wiki/index.md` exists, read it first — loading all pages wastes context.
 - Pages not linked from `index.md` are invisible.
 - Evaluate automatically — don't wait for the user to ask.

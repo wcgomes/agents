@@ -23,23 +23,23 @@
 
 ## How it works
 
-- **Specialist-first workflow** — agent discovers specialists, selects the best semantic match, delegates, reviews, and validates. Generalist execution is fallback only.
-- **Automatic wiki ingest** — agent evaluates after every task what it learned. No need to ask. Self-learning loop.
+- **Specialist-first workflow** — agent activates `delegate` first, then loads the `wiki` skill for workspace context, reads `wiki/index.md` when available, and creates or maintains `wiki/` only when setup, ingest, maintenance, or persistence of new knowledge require it. Then it discovers specialists, selects the best semantic match, delegates, reviews, and validates. Generalist execution is fallback only after re-evaluation.
+- **Automatic wiki maintenance** — agent reads `wiki/index.md` before broad workspace exploration when available, then evaluates after every task what to add, update, remove, reindex, and lint to avoid orphaned or contradictory pages. No need to ask. Self-learning loop.
 - **Automatic skill candidate tracking** — agent detects recurring procedural patterns. Tracks from first encounter, proposes at 3+.
-- **HARD-GATEs between phases** — Plan → Execute → Verify → After Task. No skipping. No combining.
+- **HARD-GATEs between phases** — Assess → Execute → After Task. Review and synthesis happen inside execution/accountability. No skipping.
 - **Anti-rationalization tables** — every skill anticipates excuses agents use to skip steps and refutes them.
 - **Parallel specialist teams** — independent scopes can be dispatched to multiple specialists automatically.
-- **Controlled subdelegation** — specialists may subdelegate when specialization or decomposition improves the task, while accountability stays with the delegator.
+- **Controlled subdelegation** — specialists may subdelegate when specialization or decomposition improves the task, while accountability stays with the delegator and subscopes still follow the same discovery, selection, and fallback rules.
 
 | Mechanism | Skill | What it does |
 |---|---|---|
 | **Delegation** | `delegate` | Discovers specialists, selects the best fit, dispatches structured handoffs, and reviews delegated work. |
-| **Self-learning wiki** | `wiki` | Reads workspace knowledge before coding, ingests learnings after. Tracks skill candidates. |
+| **Self-learning wiki** | `wiki` | Reads `wiki/index.md` before broad exploration, then adds, updates, removes, and lints workspace knowledge after tasks. Tracks skill candidates. |
 | **Minimal changes** | `implement` | Validates understanding before acting. Writes the least code that solves the problem. |
 | **Systematic debugging** | `debug` | Investigates errors with observe-hypothesize-verify-fix-confirm cycle. |
 | **Skill authoring** | `agents-skills` | Creates, refines, and validates Agent Skills following the agentskills.io spec. |
 
-Skills load **on-demand** — the agent only activates what the current context requires.
+Skills load **on-demand** — but the agent activates `delegate` first by default before substantive work or any decision about direct execution or fallback, then loads the `wiki` skill for workspace context, reads `wiki/index.md` when available, and creates or maintains `wiki/` only when setup, ingest, maintenance, or persistence of new knowledge require it, before broad exploration, delegated execution, or fallback decisions.
 
 ## 🎭 The Agency: AI Specialists Ready to Transform Your Workflow
 
@@ -93,11 +93,11 @@ cd agents-workspace
 cp AGENTS.md /path/to/your-project/
 ```
 
-`AGENTS.md` is the boot contract. The agent reads it on every session start. It defines the specialist-first policy for discovery, selection, delegation, fallback, and accountability. It is **not** installed globally.
+`AGENTS.md` is the boot contract. The agent reads it on every session start. It defines the specialist-first policy for discovery, selection, delegation, fallback, accountability, and early decomposition into specialist-owned scopes. Early decomposition is for scope partitioning and handoff, not for replacing specialized execution with broad local work. It is **not** installed globally.
 
 **Step 3 — Let the agent create `wiki/`**
 
-The agent creates `wiki/` on first ingest. This is workspace-specific knowledge — do not copy from this repo.
+The agent may create `wiki/` when setup is explicit, or when the `wiki` skill needs to ingest, maintain, or persist new knowledge. After that, the workflow treats `wiki/index.md` as the first workspace knowledge source before broad exploration, and maintains the wiki by adding, updating, removing, reindexing, and linting entries as part of self-learning. This is workspace-specific knowledge — do not copy from this repo.
 
 > **Tip:** In an existing workspace, ask the agent to "set up the wiki" before starting. This primes the self-learning loop.
 
@@ -119,6 +119,8 @@ As the agent works, it detects recurring procedural patterns. After 3 encounters
 
 ### Supported tools
 
+These are the installer target paths currently supported. They are not the normative discovery contract; runtime discovery should remain source-based and platform-aware.
+
 | Tool | Skills path | Agents path |
 |---|---|---|
 | Antigravity | `~/.gemini/antigravity/skills/` | `~/.gemini/antigravity/skills/` |
@@ -138,7 +140,7 @@ skills/                # Loadable behavioral rules — install globally
   agents-skills/       # Skill authoring and validation
 
 # In your workspace (created by the agent)
-wiki/                  # Workspace knowledge — created on first ingest
+wiki/                  # Workspace knowledge — created on setup/first ingest, then maintained automatically
   index.md
   architecture.md      # System structure overview
   conventions/         # One file per convention

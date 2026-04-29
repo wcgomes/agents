@@ -1,6 +1,6 @@
 ---
 name: delegate
-description: Delegate work to subagents. Use for tasks that may fit a specialist domain. Covers discovery, selection, structured handoff, subdelegation, and review.
+description: Mandatory specialist-first workflow. Load first, before substantive planning, research, execution, decomposition, delegation, or fallback decisions, to discover specialists, select the best fit, delegate, and review results.
 ---
 
 # Delegate
@@ -22,13 +22,18 @@ Everything else belongs to the delegated agent unless task constraints require o
 
 ## When This Skill Activates
 
-Use this skill when:
-- a task may fit a specialist domain
-- implementation, investigation, or multi-step execution is needed
-- multiple specialists may be needed for independent scopes
-- you are deciding whether generalist fallback is justified
+Activate this skill by default first, before substantive planning, research, execution, decomposition, delegation, or fallback decisions.
 
-Do not skip this skill because the current agent seems capable enough. Broad capability is not a reason to bypass specialist selection.
+After activation, load the `wiki` skill and read `wiki/index.md` when available before broad workspace exploration.
+
+Use it:
+- before deciding whether to work directly or delegate
+- before planning, research, implementation, debugging, review, or other non-trivial work
+- when specialist fit, task decomposition, or generalist fallback must be assessed
+- when broad work may need splitting into specialist-owned scopes
+
+Do not wait for delegation to be obvious; use this skill to determine whether specialist delegation is required.
+Do not skip activation because the current agent appears capable, because the task seems small, or because fallback looks convenient.
 
 ---
 
@@ -44,6 +49,8 @@ Discovery rules:
 - ignore invalid, incomplete, or incompatible candidates
 - continue safely if some sources are unavailable
 - if complete discovery is not observable, use the best supported path and state that limitation before fallback
+
+Broad exploration means workspace-wide search, repeated file reads, or open-ended local investigation beyond minimal scoping.
 
 Collect at least:
 - agent identifier
@@ -61,9 +68,13 @@ Select by best semantic match.
 
 Selection rules:
 - match the task against description, specialization, scope, and constraints
+- prefer decomposing broad tasks into specialist-owned scopes before dispatch
+- do not hand a mixed multi-domain task to one agent when it can be cleanly split
+- if subtasks require materially different specialist expertise and can be assigned without overlapping ownership, splitting is required
+- early decomposition in this phase is structural for selection and handoff, not substantive execution or broad local research
+- minimal local context gathering is allowed when needed to scope selection and handoff, but not to replace delegated work
 - prefer the most semantically specific eligible specialist
 - prefer specialists over generalists whenever an eligible specialist exists
-- allow multiple specialists when the task decomposes into distinct scopes
 - use stable documented tie-break rules when candidates are similarly suitable
 - reject "current agent can also do it" as a selection argument
 
@@ -76,7 +87,7 @@ Eligibility minimum:
 Tie-break rules:
 - first: semantic specificity to the immediate task
 - second: stable documented precedence in the current environment
-- third: split into multiple delegations when scopes are complementary
+- third: split into multiple delegations when domains or scopes are complementary
 
 When many candidates exist, select the best fit, not the most convenient fit.
 
@@ -131,15 +142,16 @@ Good candidates:
 
 ## Generalist Fallback
 
-Generalist fallback is allowed only when specialist delegation is not justified under the current task.
+Generalist fallback is allowed only under the conditions below.
 
 Fallback rules:
 - no eligible specialist exists, or all candidates are unsuitable
 - or delegation is explicitly constrained by the user
-- or delegation failed and fallback is allowed by the current task constraints
+- or delegation failed after a valid handoff, re-evaluation, and no viable specialist path remains under the current task constraints
 - explain briefly why fallback applies
 - keep justification factual
 - identify the failed discovery, selection, or constraint condition
+- under discovery limits, state why no known eligible specialist fits better under the current constraints
 - never use "good enough" as justification
 - never fall back silently
 
@@ -159,6 +171,8 @@ Use it when:
 - independent subtasks benefit from further specialist separation
 
 Subdelegation rules:
+- decompose at the current level when multiple independent scopes are already visible
+- apply the same discovery, selection, and fallback rules to each subdelegated scope
 - the delegating agent remains accountable
 - review subdelegated output before integrating it
 - avoid loops and ping-pong
